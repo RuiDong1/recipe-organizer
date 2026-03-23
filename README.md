@@ -48,7 +48,17 @@ db.mjs(db.mjs)
 
 ## Wireframes
 
-(___TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc._)
+/
+
+![landing page](documentation/landingpage.png)
+
+/register - page to register an account
+
+![register page](documentation/register.png)
+
+/login - page to log in to an account
+
+![login page](documentation/login.png)
 
 /recipes - page showing all of a user's saved recipes
 
@@ -61,6 +71,10 @@ db.mjs(db.mjs)
 /recipes/:id - page for viewing a single recipe
 
 ![recipe detail](documentation/recipes-id.png)
+
+/recipes/:id/edit - page for editing a single recipe
+
+![recipe edit](documentation/recipes-id-edit.png)
 
 /search - page for searching the a recipe API
 
