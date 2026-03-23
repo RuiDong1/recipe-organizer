@@ -44,24 +44,28 @@ An Example Recipe:
 
 ## [Link to Commented First Draft Schema](db.mjs) 
 
-(___TODO__: create a first draft of your Schemas in db.js and link to it_)
-db.mjs
+db.mjs(db.mjs)
 
 ## Wireframes
 
 (___TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc._)
 
-/list/create - page for creating a new shopping list
+/recipes - page showing all of a user's saved recipes
 
-![list create](documentation/list-create.png)
+![recipes list](documentation/recipes.png)
 
-/list - page for showing all shopping lists
+/recipes/add - page for adding a new recipe manually
 
-![list](documentation/list.png)
+![add recipe](documentation/recipes-add.png)
 
-/list/slug - page for showing specific shopping list
+/recipes/:id - page for viewing a single recipe
 
-![list](documentation/list-slug.png)
+![recipe detail](documentation/recipes-id.png)
+
+/search - page for searching the a recipe API
+
+![search](documentation/search.png)
+
 
 ## Site map
 
