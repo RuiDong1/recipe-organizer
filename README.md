@@ -50,35 +50,35 @@ db.mjs(db.mjs)
 
 /
 
-![landing page](documentation/landingpage.png)
+![landing page](documentation/landingpage.jpg)
 
 /register - page to register an account
 
-![register page](documentation/register.png)
+![register page](documentation/register.jpg)
 
 /login - page to log in to an account
 
-![login page](documentation/login.png)
+![login page](documentation/login.jpg)
 
 /recipes - page showing all of a user's saved recipes
 
-![recipes list](documentation/recipes.png)
+![recipes list](documentation/recipes.jpg)
 
 /recipes/add - page for adding a new recipe manually
 
-![add recipe](documentation/recipes-add.png)
+![add recipe](documentation/recipes-add.jpg)
 
 /recipes/:id - page for viewing a single recipe
 
-![recipe detail](documentation/recipes-id.png)
+![recipe detail](documentation/recipes-id.jpg)
 
 /recipes/:id/edit - page for editing a single recipe
 
-![recipe edit](documentation/recipes-id-edit.png)
+![recipe edit](documentation/recipes-id-edit.jpg)
 
 /search - page for searching the a recipe API
 
-![search](documentation/search.png)
+![search](documentation/search.jpg)
 
 
 ## Site map
