@@ -5,12 +5,10 @@ A web application for saving, organizing, and discovering recipes. Users can cre
 
 ## Data Model
 
-(___TODO__: a description of your application's data and their relationships to each other_) 
-
 The application stores two types of documents: Users and Recipes.
 
-* users can have multiple lists (via references)
-* each list can have multiple items (by embedding)
+* users can have multiple recipes (via references)
+* each recipe stores its ingredients as an embedded array of strings
 
 (___TODO__: sample documents_)
 
@@ -18,23 +16,28 @@ An Example User:
 
 ```javascript
 {
-  username: "shannonshopper",
-  hash: // a password hash,
-  lists: // an array of references to List documents
+  username: "chefmike",
+  hash: // a password hash
 }
 ```
 
-An Example List with Embedded Items:
+An Example Recipe:
 
 ```javascript
 {
-  user: // a reference to a User object
-  name: "Breakfast foods",
-  items: [
-    { name: "pancakes", quantity: "9876", checked: false},
-    { name: "ramen", quantity: "2", checked: true},
+  user: // a reference to a User object,
+  title: "Spaghetti Carbonara",
+  description: "A classic Roman pasta dish.",
+  ingredients: [
+    "200g spaghetti",
+    "100g pancetta",
+    "2 eggs",
+    "50g pecorino romano"
   ],
-  createdAt: // timestamp
+  instructions: "Boil pasta until al dente...",
+  tags: ["Italian", "pasta", "dinner"],
+  cookTime: 20,   // in minutes
+  sourceUrl: // optional link if imported from an API,
 }
 ```
 
@@ -42,6 +45,7 @@ An Example List with Embedded Items:
 ## [Link to Commented First Draft Schema](db.js) 
 
 (___TODO__: create a first draft of your Schemas in db.js and link to it_)
+db.mjs
 
 ## Wireframes
 
