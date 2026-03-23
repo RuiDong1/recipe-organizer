@@ -98,11 +98,14 @@ db.mjs(db.mjs)
 (___TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed_)
 
 * (4 points) User authentication with Passport.js
+    * Passport.js is a Node.js middleware that handles user login and sessions. We'll use it with passport-local and bcrypt to build authentication.
     * Using `passport-local` strategy for username/password login
     * Passwords stored as hashes
     * Sessions managed via `express-session`
 * (2 points) CSS framework — Bootstrap with custom theme
+    * Bootstrap is a CSS framework with pre-built UI parts. We'll use it with a custom theme to create styling without looking generic.
 * (3 points) Unit testing with Jest
+    * Jest is a JavaScript framework for writing automated tests. 
     * Writing unit tests for schema logic and utility functions
     * Minimum 4 tests; link to test files and screenshot to be added
 * (2 points) External API 
