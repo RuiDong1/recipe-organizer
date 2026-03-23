@@ -87,11 +87,11 @@ db.mjs(db.mjs)
 /                    
 ├── /register        ← Register form
 ├── /login           ← Login form
-├── /recipes         ← Dashboard: all saved recipes (requires login)
-│   ├── /recipes/add         ← Add a recipe manually
-│   ├── /recipes/:id         ← View a single recipe
+├── /recipes         ← all saved recipes
+│   ├── /recipes/add         ← Add a recipe
+│   ├── /recipes/:id         ← View a recipe
 │   └── /recipes/:id/edit    ← Edit a recipe
-└── /search          ← Search Spoonacular API, save results
+└── /search          ← Search a recipe API
 ```
 
 ## User Stories or Use Cases
