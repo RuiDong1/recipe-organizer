@@ -10,7 +10,6 @@ The application stores two types of documents: Users and Recipes.
 * users can have multiple recipes (via references)
 * each recipe stores its ingredients as an embedded array of strings
 
-(___TODO__: sample documents_)
 
 An Example User:
 
@@ -96,7 +95,6 @@ db.mjs(db.mjs)
 
 ## User Stories or Use Cases
 
-(___TODO__: write out how your application will be used through [user stories](http://en.wikipedia.org/wiki/User_story#Format) and / or [use cases](https://www.mongodb.com/download-center?jmp=docs&_ga=1.47552679.1838903181.1489282706#previous)_)
 
 1. As a non-registered user, I can create a new account with the site
 2. As a user, I can log in to the site
@@ -109,7 +107,6 @@ db.mjs(db.mjs)
 
 ## Research Topics
 
-(___TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed_)
 
 * (4 points) User authentication with Passport.js
     * Passport.js is a Node.js middleware that handles user login and sessions. We'll use it with passport-local and bcrypt to build authentication.
