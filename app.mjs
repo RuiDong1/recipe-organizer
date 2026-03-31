@@ -1,3 +1,4 @@
+import './config.mjs';
 import express from 'express';
 import session from 'express-session';
 import mongoose from "mongoose";
@@ -9,8 +10,7 @@ const app = express();
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
-const DSN = 'mongodb://localhost/recipe-saver';
-mongoose.connect(DSN)
+mongoose.connect(process.env.DSN)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 
@@ -40,4 +40,4 @@ app.get('/', (req, res) => {
 
 //start server
 
-app.listen(3000);
+app.listen(process.env.PORT ?? 3000);
