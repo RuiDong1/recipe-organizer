@@ -1,116 +1,135 @@
-The content below is an example project proposal / requirements document. Replace the text below the lines marked "__TODO__" with details specific to your project. Remove the "TODO" lines.
-
-(___TODO__: your project name_)
-
-# Shoppy Shoperson 
+# Recipe Organizer 
 
 ## Overview
-
-(___TODO__: a brief one or two paragraph, high-level description of your project_)
-
-Remembering what to buy at the grocery store is waaaaay too difficult. Also, shopping for groceries when you're hungry leads to regrettable purchases. Sooo... that's where Shoppy Shoperson comes in!
-
-Shoppy Shoperson is a web app that will allow users to keep track of multiple grocery lists. Users can register and login. Once they're logged in, they can create or view their grocery list. For every list that they have, they can add items to the list or cross off items.
-
+A web application for saving, organizing, and discovering recipes. Users can create and account and login, add their own recipes, browse recipes (potentially from an external API), and filter by tags or ingredients.
 
 ## Data Model
 
-(___TODO__: a description of your application's data and their relationships to each other_) 
+The application stores two types of documents: Users and Recipes.
 
-The application will store Users, Lists and Items
+* users can have multiple recipes (via references)
+* each recipe stores its ingredients as an embedded array of strings
 
-* users can have multiple lists (via references)
-* each list can have multiple items (by embedding)
-
-(___TODO__: sample documents_)
 
 An Example User:
 
 ```javascript
 {
-  username: "shannonshopper",
-  hash: // a password hash,
-  lists: // an array of references to List documents
+  username: "chefmike",
+  hash: // a password hash
 }
 ```
 
-An Example List with Embedded Items:
+An Example Recipe:
 
 ```javascript
 {
-  user: // a reference to a User object
-  name: "Breakfast foods",
-  items: [
-    { name: "pancakes", quantity: "9876", checked: false},
-    { name: "ramen", quantity: "2", checked: true},
+  user: // a reference to a User object,
+  title: "Spaghetti Carbonara",
+  description: "A classic Roman pasta dish.",
+  ingredients: [
+    "200g spaghetti",
+    "100g pancetta",
+    "2 eggs",
+    "50g pecorino romano"
   ],
-  createdAt: // timestamp
+  instructions: "Boil pasta until al dente...",
+  tags: ["Italian", "pasta", "dinner"],
+  cookTime: 20,   // in minutes
+  sourceUrl: // optional link if imported from an API,
 }
 ```
 
 
-## [Link to Commented First Draft Schema](db.js) 
+## [Link to Commented First Draft Schema](db.mjs) 
 
-(___TODO__: create a first draft of your Schemas in db.js and link to it_)
+db.mjs(db.mjs)
 
 ## Wireframes
 
-(___TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc._)
+/
 
-/list/create - page for creating a new shopping list
+![landing page](documentation/landingpage.jpg)
 
-![list create](documentation/list-create.png)
+/register - page to register an account
 
-/list - page for showing all shopping lists
+![register page](documentation/register.jpg)
 
-![list](documentation/list.png)
+/login - page to log in to an account
 
-/list/slug - page for showing specific shopping list
+![login page](documentation/login.jpg)
 
-![list](documentation/list-slug.png)
+/recipes - page showing all of a user's saved recipes
+
+![recipes list](documentation/recipes.jpg)
+
+/recipes/add - page for adding a new recipe manually
+
+![add recipe](documentation/recipes-add.jpg)
+
+/recipes/:id - page for viewing a single recipe
+
+![recipe detail](documentation/recipes-id.jpg)
+
+/recipes/:id/edit - page for editing a single recipe
+
+![recipe edit](documentation/recipes-id-edit.jpg)
+
+/search - page for searching the a recipe API
+
+![search](documentation/search.jpg)
+
 
 ## Site map
 
-(___TODO__: draw out a site map that shows how pages are related to each other_)
-
-Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia/commons/2/20/Sitemap_google.jpg), but you can create one without the screenshots, drop shadows, etc. ... just names of pages and where they flow to.
+```
+/                    
+├── /register        ← Register form
+├── /login           ← Login form
+├── /recipes         ← all saved recipes
+│   ├── /recipes/add         ← Add a recipe
+│   ├── /recipes/:id         ← View a recipe
+│   └── /recipes/:id/edit    ← Edit a recipe
+└── /search          ← Search a recipe API
+```
 
 ## User Stories or Use Cases
 
-(___TODO__: write out how your application will be used through [user stories](http://en.wikipedia.org/wiki/User_story#Format) and / or [use cases](https://www.mongodb.com/download-center?jmp=docs&_ga=1.47552679.1838903181.1489282706#previous)_)
 
-1. as non-registered user, I can register a new account with the site
-2. as a user, I can log in to the site
-3. as a user, I can create a new grocery list
-4. as a user, I can view all of the grocery lists I've created in a single list
-5. as a user, I can add items to an existing grocery list
-6. as a user, I can cross off items in an existing grocery list
+1. As a non-registered user, I can create a new account with the site
+2. As a user, I can log in to the site
+3. As a user, I can add a recipe manually using a form
+4. As a user, I can view all of my saved recipes in one place
+5. As a user, I can search for recipes via an external API
+6. As a user, I can edit a recipe I've already saved
+7. As a user, I can delete a recipe from my collection
+8. As a user, I can filter my saved recipes by tag (e.g. "dinner", "Italian")
 
 ## Research Topics
 
-(___TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed_)
 
-* (5 points) Integrate user authentication
-    * I'm going to be using passport for user authentication
-    * And account has been made for testing; I'll email you the password
-    * see <code>cs.nyu.edu/~jversoza/ait-final/register</code> for register page
-    * see <code>cs.nyu.edu/~jversoza/ait-final/login</code> for login page
-* (4 points) Perform client side form validation using a JavaScript library
-    * see <code>cs.nyu.edu/~jversoza/ait-final/my-form</code>
-    * if you put in a number that's greater than 5, an error message will appear in the dom
-* (5 points) vue.js
-    * used vue.js as the frontend framework; it's a challenging library to learn, so I've assigned it 5 points
+* (4 points) User authentication with Passport.js
+    * Passport.js is a Node.js middleware that handles user login and sessions. We'll use it with passport-local and bcrypt to build authentication.
+    * Using `passport-local` strategy for username/password login
+    * Passwords stored as hashes
+    * Sessions managed via `express-session`
+* (2 points) CSS framework — Bootstrap with custom theme
+    * Bootstrap is a CSS framework with pre-built UI parts. We'll use it with a custom theme to create styling without looking generic.
+* (3 points) Unit testing with Jest
+    * Jest is a JavaScript framework for writing automated tests. 
+    * Writing unit tests for schema logic and utility functions
+    * Minimum 4 tests; link to test files and screenshot to be added
+* (2 points) External API 
+    * Used to search for recipes by keyword from within the app
+    * Results can be previewed and saved to the user's personal collection
+11 points total out of 10 required points
 
-10 points total out of 8 required points (___TODO__: addtional points will __not__ count for extra credit_)
 
+## [Link to Initial Main Project File](app.mjs)
 
-## [Link to Initial Main Project File](app.js) 
-
-(___TODO__: create a skeleton Express application with a package.json, app.js, views folder, etc. ... and link to your initial app.js_)
+app.mjs(app.mjs)
 
 ## Annotations / References Used
 
-(___TODO__: list any tutorials/references/etc. that you've based your code off of_)
-
 1. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
-2. [tutorial on vue.js](https://vuejs.org/v2/guide/) - (add link to source code that was based on this)
+2. 
