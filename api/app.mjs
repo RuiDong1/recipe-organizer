@@ -1,25 +1,23 @@
 import './config.mjs';
 import express from 'express';
-import session from 'express-session';
+//import session from 'express-session';
 import mongoose from "mongoose";
-import passport from 'passport';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import cors from 'cors'
+//import passport from 'passport';
+import { User, Recipe } from './db.mjs'
 
 const app = express();
-const filename = fileURLToPath(import.meta.url);
-const dirname = path.dirname(filename);
 
 mongoose.connect(process.env.DSN)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 
 // middleware
-
+app.use(cors({ origin: process.env.CORS_ORIGIN }));
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(dirname, 'public')));
 
-const sessionOptions = {
+/*const sessionOptions = {
   secret: 'secret for signing session id',
   resave: false,
   saveUninitialized: false
@@ -27,12 +25,40 @@ const sessionOptions = {
 app.use(session(sessionOptions));
 
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.session());*/
 
-
-app.set('view engine', 'hbs');
 
 // routes
+// GET all recipes
+app.get('/api/recipes', async (req, res) => {
+  try {
+    const recipes = await Recipe.find();
+    res.json(recipes);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch recipes' });
+  }
+});
+
+// POST a new recipe
+app.post('/api/recipes', async (req, res) => {
+  try {
+    const recipe = new Recipe(req.body);
+    const saved = await recipe.save();
+    res.status(201).json(saved);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// DELETE a recipe
+app.delete('/api/recipes/:id', async (req, res) => {
+  try {
+    await Recipe.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Recipe deleted' });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to delete recipe' });
+  }
+});
 
 app.get('/', (req, res) => {
   res.send('Recipe Saver — coming soon!');

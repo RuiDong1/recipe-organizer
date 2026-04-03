@@ -20,9 +20,9 @@ const UserSchema = new mongoose.Schema({
 
 const RecipeSchema = new mongoose.Schema({
   user: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    required: false
   },
   title: {
     type: String,
@@ -53,7 +53,8 @@ const RecipeSchema = new mongoose.Schema({
   },
   sourceUrl: {
     type: String,    //link to original recipe if imported from API
-    trim: true
+    trim: true,
+    required: false
   }
 });
 
