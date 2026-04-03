@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import './App.css'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
@@ -125,17 +126,19 @@ function App() {
       {/* Recipe List */}
       <h2>My Recipes</h2>
       {recipes.length === 0 && <p>No recipes yet. Add one above!</p>}
-      {recipes.map(recipe => (
-        <div key={recipe._id}>
-          <h3>{recipe.title}</h3>
-          {recipe.description && <p>{recipe.description}</p>}
-          <p><strong>Ingredients:</strong> {recipe.ingredients.join(', ')}</p>
-          <p><strong>Instructions:</strong> {recipe.instructions}</p>
-          {recipe.tags.length > 0 && <p><strong>Tags:</strong> {recipe.tags.join(', ')}</p>}
-          {recipe.cookTime && <p><strong>Cook Time:</strong> {recipe.cookTime} minutes</p>}
-          <button onClick={(e) => handleDelete(e, recipe._id)}>Delete</button>
-        </div>
-      ))}
+      <div className="recipe-list">
+        {recipes.map(recipe => (
+          <div key={recipe._id} className="recipe-card">
+            <h3>{recipe.title}</h3>
+            {recipe.description && <p>{recipe.description}</p>}
+            <p><strong>Ingredients:</strong> {recipe.ingredients.join(', ')}</p>
+            <p><strong>Instructions:</strong> {recipe.instructions}</p>
+            {recipe.tags.length > 0 && <p><strong>Tags:</strong> {recipe.tags.join(', ')}</p>}
+            {recipe.cookTime && <p><strong>Cook Time:</strong> {recipe.cookTime} minutes</p>}
+            <button onClick={(e) => handleDelete(e, recipe._id)}>Delete</button>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
