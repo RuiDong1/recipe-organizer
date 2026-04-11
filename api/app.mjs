@@ -107,6 +107,14 @@ app.post('/api/logout', (req, res) => {
   });
 });
 
+app.get('/api/me', (req, res) => {
+  if (req.isAuthenticated()) {
+    res.json({ username: req.user.username });
+  } else {
+    res.status(401).json({ error: 'Not logged in' });
+  }
+});
+
 // Recipe routes
 
 // GET all recipes for logged in user
