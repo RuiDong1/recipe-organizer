@@ -90,10 +90,29 @@ app.post('/api/register', async (req, res) => {
   }
 });
 
-// GET all recipes
-app.get('/api/recipes', async (req, res) => {
+// login
+app.post('/api/login', passport.authenticate('local'), (req, res) => {
+  res.json({ message: 'Logged in', user: req.user.username });
+});
+
+// logout
+app.post('/api/logout', (req, res) => {
+  req.logout((err) => {
+    if (err) { 
+      return res.status(500).json({ error: 'Logout failed' }); 
+    }
+    else{ 
+      res.json({ message: 'Logged out' });
+    }
+  });
+});
+
+// Recipe routes
+
+// GET all recipes for logged in user
+app.get('/api/recipes', requireAuth, async (req, res) => {
   try {
-    const recipes = await Recipe.find();
+    const recipes = await Recipe.find({ user: req.user._id });
     res.json(recipes);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch recipes' });
@@ -101,9 +120,9 @@ app.get('/api/recipes', async (req, res) => {
 });
 
 // POST a new recipe
-app.post('/api/recipes', async (req, res) => {
+app.post('/api/recipes', requireAuth, async (req, res) => {
   try {
-    const recipe = new Recipe(req.body);
+    const recipe = new Recipe({ ...req.body, user: req.user._id });
     const saved = await recipe.save();
     res.status(201).json(saved);
   } catch (err) {
@@ -112,19 +131,14 @@ app.post('/api/recipes', async (req, res) => {
 });
 
 // DELETE a recipe
-app.delete('/api/recipes/:id', async (req, res) => {
+app.delete('/api/recipes/:id', requireAuth, async (req, res) => {
   try {
-    await Recipe.findByIdAndDelete(req.params.id);
+    await Recipe.findOneAndDelete({ _id: req.params.id, user: req.user.id });
     res.json({ message: 'Recipe deleted' });
   } catch (err) {
     res.status(500).json({ error: 'Failed to delete recipe' });
   }
 });
 
-app.get('/', (req, res) => {
-  res.send('Recipe Saver — coming soon!');
-});
-
 //start server
-
 app.listen(process.env.PORT ?? 3000);
