@@ -29,7 +29,8 @@ const sessionOptions = {
   saveUninitialized: false,
   store: MongoStore.create({ mongoUrl: process.env.DSN }),
   cookie: {
-    sameSite: 'none'
+    sameSite: 'none',
+    secure: process.env.NODE_ENV === 'production'
   }
 };
 app.use(session(sessionOptions));
