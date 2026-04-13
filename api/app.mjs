@@ -27,10 +27,10 @@ const sessionOptions = {
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
-  store: MongoStore.create({ mongoUrl: process.env.DSN })
-  // cookie: {
-  //   sameSite: process.env.NODE_ENV === "none",
-  // }
+  store: MongoStore.create({ mongoUrl: process.env.DSN }),
+  cookie: {
+    sameSite: 'none'
+  }
 };
 app.use(session(sessionOptions));
 
