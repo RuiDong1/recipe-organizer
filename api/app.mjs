@@ -16,6 +16,8 @@ mongoose.connect(process.env.DSN)
   .catch(err => console.error('MongoDB connection error:', err));
 
 // middleware
+app.set('trust proxy', 1)
+
 app.use(cors({ 
   origin: process.env.CORS_ORIGIN,
   credentials: true
