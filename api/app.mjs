@@ -126,7 +126,7 @@ app.get('/api/me', (req, res) => {
 // GET all recipes for logged in user
 app.get('/api/recipes', requireAuth, async (req, res) => {
   try {
-    const recipes = await Recipe.find({ user: req.user._id });
+    const recipes = await Recipe.find();
     res.json(recipes);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch recipes' });

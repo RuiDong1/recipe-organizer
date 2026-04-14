@@ -145,7 +145,7 @@ function Recipes({ user, setUser }) {
       </form>
 
       {/* Recipe List */}
-      <h2>My Recipes</h2>
+      <h2>All Recipes(can see other users)</h2>
       {recipes.length === 0 && <p>No recipes yet. Add one above!</p>}
       <div className="recipe-list">
         {recipes.map(recipe => (
