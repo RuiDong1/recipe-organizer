@@ -31,7 +31,7 @@ const sessionOptions = {
   saveUninitialized: false,
   store: MongoStore.create({ mongoUrl: process.env.DSN }),
   cookie: {
-    sameSite: 'none',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : "lax",
     secure: process.env.NODE_ENV === 'production'
   }
 };
@@ -126,7 +126,7 @@ app.get('/api/me', (req, res) => {
 // GET all recipes for logged in user
 app.get('/api/recipes', requireAuth, async (req, res) => {
   try {
-    const recipes = await Recipe.find();
+    const recipes = await Recipe.find({ user: req.user._id });
     res.json(recipes);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch recipes' });
