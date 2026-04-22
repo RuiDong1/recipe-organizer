@@ -133,6 +133,16 @@ app.get('/api/recipes', requireAuth, async (req, res) => {
   }
 });
 
+app.get('/api/recipes/:id', requireAuth, async (req, res) => {
+  try {
+    const recipe = await Recipe.findOne({ _id: req.params.id, user: req.user._id })
+    if (!recipe) return res.status(404).json({ error: 'Recipe not found' })
+    res.json(recipe)
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch recipe' })
+  }
+})
+
 // POST a new recipe
 app.post('/api/recipes', requireAuth, async (req, res) => {
   try {
@@ -153,6 +163,23 @@ app.delete('/api/recipes/:id', requireAuth, async (req, res) => {
     res.status(500).json({ error: 'Failed to delete recipe' });
   }
 });
+
+// PUT - EDIT a recipe
+app.put('/api/recipes/:id', requireAuth, async (req, res) => {
+  try {
+    const recipe = await Recipe.findOneAndUpdate(
+      { _id: req.params.id, user: req.user._id },
+      req.body,
+      { new: true }
+    )
+    if (!recipe) {
+      return res.status(404).json({ error: 'Recipe not found' })
+    }
+    res.json(recipe)
+  } catch (err) {
+    res.status(400).json({ error: err.message })
+  }
+})
 
 //start server
 app.listen(process.env.PORT ?? 3000);

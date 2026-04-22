@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Recipes from './pages/Recipes'
+import EditRecipe from './pages/EditRecipe'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
@@ -35,6 +36,10 @@ function App() {
           user ? <Recipes user={user} setUser={setUser} /> : <Navigate to="/login" />
         } />
         <Route path="/" element={<Navigate to="/recipes" />} />
+        
+        <Route path="/recipes/:id/edit" element={
+          user ? <EditRecipe /> : <Navigate to="/login" />
+        } />
       </Routes>
     </BrowserRouter>
   )

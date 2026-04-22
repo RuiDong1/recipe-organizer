@@ -156,6 +156,7 @@ function Recipes({ user, setUser }) {
             <p><strong>Instructions:</strong> {recipe.instructions}</p>
             {recipe.tags.length > 0 && <p><strong>Tags:</strong> {recipe.tags.join(', ')}</p>}
             {recipe.cookTime && <p><strong>Cook Time:</strong> {recipe.cookTime} minutes</p>}
+            <button onClick={() => navigate(`/recipes/${recipe._id}/edit`)}>Edit</button>
             <button onClick={(e) => handleDelete(e, recipe._id)}>Delete</button>
           </div>
         ))}
