@@ -47,8 +47,8 @@ function EditRecipe() {
           cookTime: Number(cookTime)
         })
       })
-      if (!res.ok) throw new Error('Failed to update recipe')
-      navigate('/recipes')
+      if (!res.ok) throw new Error()
+      navigate(`/recipes/${id}`)
     } catch (err) {
       setError('Failed to update recipe. Please try again.')
     }
@@ -84,7 +84,7 @@ function EditRecipe() {
           <input type="number" value={cookTime} onChange={e => setCookTime(e.target.value)} min="0" />
         </div>
         <button type="submit">Save Changes</button>
-        <button type="button" onClick={() => navigate('/recipes')}>Cancel</button>
+        <button type="button" onClick={() => navigate(`/recipes/${id}`)}>Cancel</button>
       </form>
     </div>
   )

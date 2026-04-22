@@ -149,16 +149,12 @@ function Recipes({ user, setUser }) {
       {recipes.length === 0 && <p>No recipes yet. Add one above!</p>}
       <div className="recipe-list">
         {recipes.map(recipe => (
-          <div key={recipe._id} className="recipe-card">
+        <div key={recipe._id} className="recipe-card">
             <h3>{recipe.title}</h3>
-            {recipe.description && <p>{recipe.description}</p>}
-            <p><strong>Ingredients:</strong> {recipe.ingredients.join(', ')}</p>
-            <p><strong>Instructions:</strong> {recipe.instructions}</p>
             {recipe.tags.length > 0 && <p><strong>Tags:</strong> {recipe.tags.join(', ')}</p>}
-            {recipe.cookTime && <p><strong>Cook Time:</strong> {recipe.cookTime} minutes</p>}
-            <button onClick={() => navigate(`/recipes/${recipe._id}/edit`)}>Edit</button>
-            <button onClick={(e) => handleDelete(e, recipe._id)}>Delete</button>
-          </div>
+            <button onClick={() => navigate(`/recipes/${recipe._id}`)}>View</button>
+            <button className="delete-btn" onClick={(e) => handleDelete(e, recipe._id)}>Delete</button>
+        </div>
         ))}
       </div>
     </div>
