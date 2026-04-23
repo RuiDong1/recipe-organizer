@@ -27,7 +27,7 @@ You must be logged in to access the recipes page. Register an account at /regist
 
 or use account
 username: test
-passwork: testtest
+password: testtest
 
 
 URL for form 2 (for current milestone)
@@ -82,7 +82,7 @@ Optional project notes
 --- 
 Create an account at /register or use account
 username: test
-passwork: testtest
+password: testtest
 
 Attributions
 ---
