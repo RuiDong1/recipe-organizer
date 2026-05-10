@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
 function Search() {
-  const [queryRef] = useRef()
+  const queryRef = useRef()
   const [results, setResults] = useState([])
   const [error, setError] = useState('')
   const [saved, setSaved] = useState([])
