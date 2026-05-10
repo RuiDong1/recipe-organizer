@@ -5,6 +5,7 @@ import Register from './pages/Register'
 import Recipes from './pages/Recipes'
 import EditRecipe from './pages/EditRecipe'
 import RecipeDetail from './pages/RecipeDetail'
+import Search from './pages/Search'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
@@ -44,6 +45,10 @@ function App() {
 
         <Route path="/recipes/:id" element={
           user ? <RecipeDetail /> : <Navigate to="/login" />
+        } />
+
+        <Route path="/search" element={
+          user ? <Search /> : <Navigate to="/login" />
         } />
       </Routes>
     </BrowserRouter>
