@@ -87,6 +87,8 @@ function Recipes({ user, setUser }) {
             </div>
         </div>
 
+      <button onClick={() => navigate('/search')}>Search Recipes</button>
+      
       {/* Add Recipe Form */}
       <h2>Add a Recipe</h2>
       <form onSubmit={handleSubmit}>

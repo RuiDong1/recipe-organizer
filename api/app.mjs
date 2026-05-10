@@ -181,5 +181,22 @@ app.put('/api/recipes/:id', requireAuth, async (req, res) => {
   }
 })
 
+// search external recipe API
+app.get('/api/search', requireAuth, async (req, res) => {
+  try {
+    const query = req.query.q
+    if (!query) return res.status(400).json({ error: 'Search query is required' })
+
+    const response = await fetch(
+      `https://api.spoonacular.com/recipes/complexSearch?query=${query}&addRecipeInformation=true&number=10&apiKey=${process.env.SPOONACULAR_API_KEY}`
+    )
+    const data = await response.json()
+    res.json(data.results)
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to search recipes' })
+  }
+})
+
+
 //start server
 app.listen(process.env.PORT ?? 3000);
