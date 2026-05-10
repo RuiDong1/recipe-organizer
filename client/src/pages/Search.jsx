@@ -16,7 +16,7 @@ function Search() {
     setError('')
     try {
       const res = await fetch(`${API_BASE_URL}/api/search?q=${query}`, {
-        credentials: 'include'
+        credentials: "include"
       })
       if (!res.ok) throw new Error('Search failed')
       const data = await res.json()
@@ -55,8 +55,7 @@ function Search() {
       <form onSubmit={handleSearch}>
         <input
           type="text"
-          value={query}
-          onChange={e => setQuery(e.target.value)}
+          ref={queryRef}
           placeholder="Search for a recipe..."
           required
         />
